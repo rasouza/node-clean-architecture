@@ -3,13 +3,17 @@
 ![Preview](preview.png)
 
 ## Table of Contents
-* [Libs](#libs)
-* [Installation](#installation)
-* [Testing](#testing)
-* [Clean Architecture](#clean-architecture)
-    * [Folder structure](#folder-structure)
-    * [The Dependency Rule](#the-dependency-rule)
-* [Troubleshooting](#troubleshooting)
+- [Table of Contents](#table-of-contents)
+- [Libs](#libs)
+- [Installation](#installation)
+- [Testing](#testing)
+- [Clean Architecture](#clean-architecture)
+  - [Folder structure](#folder-structure)
+  - [The Dependency Rule](#the-dependency-rule)
+  - [Typical Request](#typical-request)
+- [Troubleshooting](#troubleshooting)
+  - [Log `connected to MongoDB database!` doesn't appear](#log-connected-to-mongodb-database-doesnt-appear)
+  - [I'm getting `EADDRINUSE` upon application start](#im-getting-eaddrinuse-upon-application-start)
 
 
 This backend implements a [RESTful](https://restfulapi.net/) CRUD interface for users and complies with Eric Evan's [DDD](https://en.wikipedia.org/wiki/Domain-driven_design) and Uncle Bob's [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) which is briefly explained here in the document. 
@@ -76,6 +80,10 @@ It uses an in-memory DB to run tests so you don't need to have mongodb up and ru
 >The overriding rule that makes this architecture work is The Dependency Rule. This rule says that source code dependencies can only point inwards. Nothing in an inner circle can know anything at all about something in an outer circle. In particular, the name of something declared in an outer circle must not be mentioned by the code in the an inner circle. That includes, functions, classes. variables, or any other named software entity.
 
 Extracted from https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html#the-dependency-rule
+
+### Typical Request
+
+![Request](architecture.jpg)
 
 ## Troubleshooting
 
