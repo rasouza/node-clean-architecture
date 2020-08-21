@@ -1,19 +1,22 @@
 ![Code Coverage](https://img.shields.io/badge/coverage-96%25-green?style=flat-square)
 
+# Node Clean Architecture
+
 ![Preview](preview.png)
 
 ## Table of Contents
-- [Table of Contents](#table-of-contents)
-- [Libs](#libs)
-- [Installation](#installation)
-- [Testing](#testing)
-- [Clean Architecture](#clean-architecture)
-  - [Folder structure](#folder-structure)
-  - [The Dependency Rule](#the-dependency-rule)
-  - [Typical Request](#typical-request)
-- [Troubleshooting](#troubleshooting)
-  - [Log `connected to MongoDB database!` doesn't appear](#log-connected-to-mongodb-database-doesnt-appear)
-  - [I'm getting `EADDRINUSE` upon application start](#im-getting-eaddrinuse-upon-application-start)
+- [Node Clean Architecture](#node-clean-architecture)
+  - [Table of Contents](#table-of-contents)
+  - [Libs](#libs)
+  - [Installation](#installation)
+  - [Testing](#testing)
+  - [Clean Architecture](#clean-architecture)
+    - [Folder structure](#folder-structure)
+    - [The Dependency Rule](#the-dependency-rule)
+    - [Typical Request](#typical-request)
+  - [Troubleshooting](#troubleshooting)
+    - [Log `connected to MongoDB database!` doesn't appear](#log-connected-to-mongodb-database-doesnt-appear)
+    - [I'm getting `EADDRINUSE` upon application start](#im-getting-eaddrinuse-upon-application-start)
 
 
 This backend implements a [RESTful](https://restfulapi.net/) CRUD interface for users and complies with Eric Evan's [DDD](https://en.wikipedia.org/wiki/Domain-driven_design) and Uncle Bob's [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) which is briefly explained here in the document. 
