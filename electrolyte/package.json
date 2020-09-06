@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/rasouza/sami-test#readme",
   "dependencies": {
+    "awilix": "^4.2.6",
     "dotenv": "^8.2.0",
     "electrolyte": "^0.5.1",
     "lodash-fp": "^0.10.4",
