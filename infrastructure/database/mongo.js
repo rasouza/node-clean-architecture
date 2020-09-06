@@ -1,5 +1,3 @@
-'use strict'
-
 exports = module.exports = mongoose => {
   const { DB_HOST, DB_PORT, DB_DATABASE, DB_USER, DB_PASS } = process.env
   const connectionString = `mongodb://${DB_HOST}:${DB_PORT}/${DB_DATABASE}`

@@ -1,5 +1,3 @@
-'use strict'
-
 exports = module.exports = (restify, UsersController) => [
   {
     method: 'get',

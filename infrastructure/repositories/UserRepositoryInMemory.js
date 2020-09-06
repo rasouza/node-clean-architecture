@@ -1,5 +1,3 @@
-'use strict'
-
 const filter = require('lodash/fp/filter')
 const first = require('lodash/fp/first')
 const remove = require('lodash/fp/remove')

@@ -1,5 +1,3 @@
-'use strict'
-
 exports = module.exports = IoC => {
   return {
     async init () {

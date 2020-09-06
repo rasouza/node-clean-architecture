@@ -1,5 +1,3 @@
-'use strict'
-
 exports = module.exports = () => class {
   constructor (id = null, name, cpf, birthdate, subscription, dependents) {
     this.id = id

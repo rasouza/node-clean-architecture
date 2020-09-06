@@ -1,5 +1,3 @@
-'use strict'
-
 const each = require('lodash/fp/each')
 
 exports = module.exports = (restify, routes) => {

@@ -1,5 +1,3 @@
-'use strict'
-
 exports = module.exports = (User, MongooseUser, errors) => {
   return {
     async find () {

@@ -1,5 +1,3 @@
-'use strict'
-
 const pick = require('lodash/fp/pick')
 
 exports = module.exports = (errors, ListUsers, CreateUser, GetUser, UpdateUser, DeleteUser) => {

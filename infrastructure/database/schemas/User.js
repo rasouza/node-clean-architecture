@@ -1,5 +1,3 @@
-'use strict'
-
 exports = module.exports = ({ database: mongoose }) => mongoose.model('User', new mongoose.Schema({
   name: String,
   cpf: {

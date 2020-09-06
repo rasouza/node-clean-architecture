@@ -1,5 +1,3 @@
-'use strict'
-
 const providers = {}
 exports = module.exports = () => providers
 
