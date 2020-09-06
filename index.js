@@ -13,7 +13,7 @@ const app = async () => {
   const bootstrap = await IoC.create('bootstrap')
   bootstrap.init()
   bootstrap.registerProviders()
-  
+
   return bootstrap.createServer()
 }
 

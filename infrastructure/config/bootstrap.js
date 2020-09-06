@@ -9,21 +9,19 @@ exports = module.exports = IoC => {
     async registerProviders () {
       const container = await IoC.create('container')
 
-      if (process.env.NODE_ENV === 'test') 
-        process.env.DB_DRIVER = 'in-memory';
+      if (process.env.NODE_ENV === 'test') { process.env.DB_DRIVER = 'in-memory' }
 
-      if (process.env.DB_DRIVER === "in-memory") {
-        container.database = "in-memory";
+      if (process.env.DB_DRIVER === 'in-memory') {
+        container.database = 'in-memory'
         container.userRepository = await IoC.create(
-          "infrastructure/repositories/UserRepositoryInMemory"
-        );
-      } else if (process.env.DB_DRIVER === "mongo") {
-        container.database = await IoC.create("infrastructure/database/mongo");
+          'infrastructure/repositories/UserRepositoryInMemory'
+        )
+      } else if (process.env.DB_DRIVER === 'mongo') {
+        container.database = await IoC.create('infrastructure/database/mongo')
         container.userRepository = await IoC.create(
-          "infrastructure/repositories/UserRepositoryMongo"
-        );
+          'infrastructure/repositories/UserRepositoryMongo'
+        )
       }
-      
     },
 
     async createServer () {
@@ -39,4 +37,4 @@ exports = module.exports = IoC => {
 }
 
 exports['@singleton'] = true
-exports["@require"] = ["electrolyte"];
+exports['@require'] = ['electrolyte']

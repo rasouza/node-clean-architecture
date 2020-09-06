@@ -18,26 +18,26 @@ exports = module.exports = (User, errors) => {
       if (duplicated.length > 0) throw new errors.AlreadyExists('This CPF already exists')
 
       user.id = `${++this.lastId}`
-      this.db.push(user);
+      this.db.push(user)
       return user
     },
 
     get (id) {
-      const user = first(filter({ id }, this.db));
-      if (!user) throw new errors.NotFound("User not found");
+      const user = first(filter({ id }, this.db))
+      if (!user) throw new errors.NotFound('User not found')
       return user
     },
 
     merge (id, data) {
       let user = this.remove(id)
       user = merge(user, data)
-      
+
       this.db.push(user)
       return user
     },
 
     remove (id) {
-      const user = this.get(id);
+      const user = this.get(id)
       this.db = remove({ id }, this.db)
 
       return user
