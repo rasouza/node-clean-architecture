@@ -1,0 +1,42 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "user management api for healthcare system",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon",
+    "start": "node index.js",
+    "test": "nyc --reporter=html --report-dir=coverage mocha --recursive --exit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rasouza/sami-test.git"
+  },
+  "author": "R. A. Souza",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rasouza/sami-test/issues"
+  },
+  "homepage": "https://github.com/rasouza/sami-test#readme",
+  "dependencies": {
+    "awilix": "^4.2.6",
+    "dotenv": "^8.2.0",
+    "electrolyte": "^0.5.1",
+    "lodash-fp": "^0.10.4",
+    "mongoose": "^5.9.18",
+    "restify": "^8.5.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.0.1",
+    "nodemon": "^2.0.4",
+    "nyc": "^15.1.0",
+    "standard": "^14.3.4",
+    "supertest": "^4.0.2"
+  },
+  "standard": {
+    "ignore": [
+      "mongo-init.js"
+    ]
+  }
+}
