@@ -65,7 +65,6 @@ It uses an in-memory DB to run tests so you don't need to have mongodb up and ru
 └ infrastructure                → Frameworks, drivers and tools such as Database, the Web Framework, mailing/logging/glue code etc.
     └ config                    → Application configuration files, modules and services
         └ container.js          → Module that manage service implementations by environment
-        └ bootstrap.js          → Application's Composition Root
     └ database                  → Database ORMs middleware
         └ schemas               → Mongoose schemas
     └ repositories              → Implementation of domain repository interfaces
