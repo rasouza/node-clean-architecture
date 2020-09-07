@@ -1,4 +1,12 @@
-module.exports = ({ ListUsers, CreateUser, GetUser, DeleteUser }) => ({
+const pick = require('lodash/fp/pick')
+
+const UsersController = ({
+  ListUsers,
+  CreateUser,
+  GetUser,
+  DeleteUser,
+  UpdateUser
+}) => ({
   listUsers: async (req, res, next) => {
     try {
       const users = await ListUsers()
@@ -11,7 +19,14 @@ module.exports = ({ ListUsers, CreateUser, GetUser, DeleteUser }) => ({
   createUser: async (req, res, next) => {
     const { name, cpf, birthdate, subscription, dependents } = req.body
     try {
-      const user = await CreateUser(name, cpf, birthdate, subscription, dependents)
+      const user = await CreateUser(
+        name,
+        cpf,
+        birthdate,
+        subscription,
+        dependents
+      )
+
       res.send(201, user)
     } catch (err) {
       next(err)
@@ -34,5 +49,24 @@ module.exports = ({ ListUsers, CreateUser, GetUser, DeleteUser }) => ({
     } catch (err) {
       next(err)
     }
+  },
+
+  updateUser: async (req, res, next) => {
+    try {
+      const permitted = [
+        'name',
+        'cpf',
+        'birthdate',
+        'subscription',
+        'dependents'
+      ]
+
+      const user = await UpdateUser(req.params.id, pick(permitted, req.body))
+      res.send(user)
+    } catch (err) {
+      next(err)
+    }
   }
 })
+
+module.exports = UsersController
