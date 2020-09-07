@@ -12,4 +12,6 @@ module.exports = ({ routes }) => {
   server.listen(8080, () => {
     console.log(`${server.name} listening at ${server.url}`)
   })
+
+  return server
 }

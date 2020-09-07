@@ -13,7 +13,7 @@ const inMemoryDB = () => {
   const UserRepositoryInMemory = require('../repositories/UserRepositoryInMemory')
 
   container.register({
-    UserRepository: asFunction(UserRepositoryInMemory)
+    UserRepository: asFunction(UserRepositoryInMemory).singleton()
   })
 }
 
