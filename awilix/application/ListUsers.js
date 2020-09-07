@@ -1,3 +1,1 @@
-module.exports = ({ UserRepository }) => async () => {
-  return await UserRepository.find()
-}
+module.exports = ({ UserRepository }) => async () => await UserRepository.find()
