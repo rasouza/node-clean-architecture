@@ -1,53 +1,50 @@
-'use strict'
+const restify = require('restify')
 
-exports = module.exports = (restify, UsersController) => [
+module.exports = ({ UsersController }) => [
   {
-    method: "get",
-    path: "/users",
-    handler: UsersController.listUsers,
+    method: 'get',
+    path: '/users',
+    handler: UsersController.listUsers
   },
   {
-    method: "post",
-    path: "/users",
-    handler: UsersController.createUser,
+    method: 'post',
+    path: '/users',
+    handler: UsersController.createUser
   },
   {
-    method: "get",
-    path: "/users/:id",
-    handler: UsersController.findUser,
+    method: 'get',
+    path: '/users/:id',
+    handler: UsersController.findUser
   },
   {
-    method: "patch",
-    path: "/users/:id",
-    handler: UsersController.updateUser,
+    method: 'del',
+    path: '/users/:id',
+    handler: UsersController.deleteUser
   },
   {
-    method: "put",
-    path: "/users/:id",
-    handler: UsersController.updateUser,
+    method: 'patch',
+    path: '/users/:id',
+    handler: UsersController.updateUser
   },
   {
-    method: "del",
-    path: "/users/:id",
-    handler: UsersController.deleteUser,
+    method: 'put',
+    path: '/users/:id',
+    handler: UsersController.updateUser
   },
   {
-    method: "get",
-    path: "/docs/*",
+    method: 'get',
+    path: '/docs/*',
     handler: restify.plugins.serveStatic({
       directory: `${__dirname}../../../`,
-      default: "index.html",
-    }),
+      default: 'index.html'
+    })
   },
   {
-    method: "get",
-    path: "/coverage/*",
+    method: 'get',
+    path: '/coverage/*',
     handler: restify.plugins.serveStatic({
       directory: `${__dirname}../../../`,
-      default: "index.html",
-    }),
-  },
-];
-
-exports['@singleton'] = true
-exports['@require'] = ['restify', 'ports/http/UsersController']
+      default: 'index.html'
+    })
+  }
+]

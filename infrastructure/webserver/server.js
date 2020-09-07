@@ -1,8 +1,7 @@
-'use strict'
-
 const each = require('lodash/fp/each')
+const restify = require('restify')
 
-exports = module.exports = (restify, routes) => {
+module.exports = ({ routes }) => {
   const server = restify.createServer()
   server.use(restify.plugins.bodyParser())
 
@@ -10,8 +9,9 @@ exports = module.exports = (restify, routes) => {
     server[route.method](route.path, route.handler)
   })(routes)
 
+  server.listen(8080, () => {
+    console.log(`${server.name} listening at ${server.url}`)
+  })
+
   return server
 }
-
-exports['@singleton'] = true
-exports['@require'] = ['restify', 'ports/http/routes']

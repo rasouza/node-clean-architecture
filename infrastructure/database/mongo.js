@@ -1,6 +1,7 @@
-'use strict'
+const { RESOLVER, Lifetime } = require('awilix')
+const mongoose = require('mongoose')
 
-exports = module.exports = mongoose => {
+const database = () => {
   const { DB_HOST, DB_PORT, DB_DATABASE, DB_USER, DB_PASS } = process.env
   const connectionString = `mongodb://${DB_HOST}:${DB_PORT}/${DB_DATABASE}`
 
@@ -21,5 +22,8 @@ exports = module.exports = mongoose => {
   return mongoose
 }
 
-exports['@singleton'] = true
-exports['@require'] = ['mongoose']
+module.exports = database
+database[RESOLVER] = {
+  name: 'database',
+  lifetime: Lifetime.SINGLETON
+}

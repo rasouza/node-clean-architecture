@@ -27,7 +27,7 @@ It also exposes a `/docs/` endpoint for further reference and `/coverage/` for t
 * [Restify](http://restify.com/)
 * [Mongoose](https://mongoosejs.com/)
 * [Lodash FP](https://github.com/lodash/lodash/wiki/FP-Guide) Functional Programming version
-* [electrolyte](https://github.com/jaredhanson/electrolyte) as Dependency Injection container
+* [Awilix](https://github.com/jeffijoe/awilix) as Dependency Injection container
 * [dotenv](https://www.npmjs.com/package/dotenv)
 
 ## Installation

@@ -1,6 +1,7 @@
-'use strict'
+const { RESOLVER } = require('awilix')
+const { Schema } = require('mongoose')
 
-exports = module.exports = ({ database: mongoose }) => mongoose.model('User', new mongoose.Schema({
+const userSchema = new Schema({
   name: String,
   cpf: {
     type: Number,
@@ -13,7 +14,11 @@ exports = module.exports = ({ database: mongoose }) => mongoose.model('User', ne
     enum: ['Basic', 'Standard', 'Premium']
   },
   dependents: Number
-}))
+})
 
-exports['@singleton'] = true
-exports['@require'] = ['container']
+const userModel = ({ database: mongoose }) => mongoose.model('User', userSchema)
+module.exports = userModel
+
+userModel[RESOLVER] = {
+  name: 'UserSchema'
+}
