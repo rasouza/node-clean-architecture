@@ -13,5 +13,10 @@ module.exports = ({ UsersController }) => [
     method: 'get',
     path: '/users/:id',
     handler: UsersController.findUser
+  },
+  {
+    method: 'del',
+    path: '/users/:id',
+    handler: UsersController.deleteUser
   }
 ]

@@ -1,5 +1,5 @@
-module.exports = ({ ListUsers, CreateUser, GetUser }) => ({
-  async listUsers (req, res, next) {
+module.exports = ({ ListUsers, CreateUser, GetUser, DeleteUser }) => ({
+  listUsers: async (req, res, next) => {
     try {
       const users = await ListUsers()
       res.send(users)
@@ -8,7 +8,7 @@ module.exports = ({ ListUsers, CreateUser, GetUser }) => ({
     }
   },
 
-  async createUser (req, res, next) {
+  createUser: async (req, res, next) => {
     const { name, cpf, birthdate, subscription, dependents } = req.body
     try {
       const user = await CreateUser(name, cpf, birthdate, subscription, dependents)
@@ -18,10 +18,19 @@ module.exports = ({ ListUsers, CreateUser, GetUser }) => ({
     }
   },
 
-  async findUser (req, res, next) {
+  findUser: async (req, res, next) => {
     try {
       const user = await GetUser(req.params.id)
       res.send(user)
+    } catch (err) {
+      next(err)
+    }
+  },
+
+  deleteUser: async (req, res, next) => {
+    try {
+      await DeleteUser(req.params.id)
+      res.send(204, {})
     } catch (err) {
       next(err)
     }
