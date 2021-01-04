@@ -4,6 +4,7 @@ process.env.NODE_ENV = 'test'
 
 describe('Users API', async () => {
   const server = await require('../../index')
+  console.log(server)
   const request = require('supertest')(server)
   describe('When there is no user in database', () => {
     it('GET /users returns empty list', async () => {

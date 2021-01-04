@@ -2,37 +2,37 @@ const restify = require('restify')
 
 module.exports = ({ UsersController }) => [
   {
-    method: 'get',
+    method: 'GET',
     path: '/users',
     handler: UsersController.listUsers
   },
   {
-    method: 'post',
+    method: 'POST',
     path: '/users',
     handler: UsersController.createUser
   },
   {
-    method: 'get',
+    method: 'GET',
     path: '/users/:id',
     handler: UsersController.findUser
   },
   {
-    method: 'del',
+    method: 'DELETE',
     path: '/users/:id',
     handler: UsersController.deleteUser
   },
   {
-    method: 'patch',
+    method: 'PATCH',
     path: '/users/:id',
     handler: UsersController.updateUser
   },
   {
-    method: 'put',
+    method: 'PUT',
     path: '/users/:id',
     handler: UsersController.updateUser
   },
   {
-    method: 'get',
+    method: 'GET',
     path: '/docs/*',
     handler: restify.plugins.serveStatic({
       directory: `${__dirname}../../../`,
@@ -40,7 +40,7 @@ module.exports = ({ UsersController }) => [
     })
   },
   {
-    method: 'get',
+    method: 'GET',
     path: '/coverage/*',
     handler: restify.plugins.serveStatic({
       directory: `${__dirname}../../../`,
