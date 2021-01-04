@@ -4,7 +4,7 @@
   "description": "user management api for healthcare system",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon",
+    "dev": "NODE_ENV=development nodemon",
     "start": "node index.js",
     "test": "nyc --reporter=html --report-dir=coverage mocha --recursive --exit"
   },
@@ -22,15 +22,20 @@
     "awilix": "^4.2.6",
     "dotenv": "^8.2.0",
     "electrolyte": "^0.5.1",
+    "fastify": "^3.9.2",
     "lodash-fp": "^0.10.4",
+    "make-promises-safe": "^5.1.0",
     "mongoose": "^5.9.18",
-    "restify": "^8.5.1"
+    "pino": "^6.9.0",
+    "restify": "^8.5.1",
+    "restify-pino-logger": "^3.0.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^8.0.1",
     "nodemon": "^2.0.4",
     "nyc": "^15.1.0",
+    "pino-pretty": "^4.3.0",
     "standard": "^14.3.4",
     "supertest": "^4.0.2"
   },
