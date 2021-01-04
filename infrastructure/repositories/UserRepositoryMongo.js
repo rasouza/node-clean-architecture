@@ -1,3 +1,6 @@
+/**
+ * TODO: Remove restify-errors
+ */
 const { NotFoundError, ForbiddenError } = require('restify-errors')
 
 const MONGO_ALREADY_EXISTS = 11000

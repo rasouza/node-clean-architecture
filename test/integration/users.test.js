@@ -2,6 +2,10 @@ const { expect } = require('chai')
 
 process.env.NODE_ENV = 'test'
 
+/**
+ * FIXME: supertest doesn't work with fastify
+ */
+
 describe('Users API', async () => {
   const server = await require('../../index')
   console.log(server)
