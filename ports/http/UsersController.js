@@ -1,14 +1,14 @@
 const pick = require('lodash/fp/pick')
 
 const UsersController = (container) => ({
-  listUsers: async (req, res, next) => {
+  listUsers: async (req, res) => {
     const { ListUsers } = container
 
     const users = await ListUsers()
     res.send(users)
   },
 
-  createUser: async (req, res, next) => {
+  createUser: async (req, res) => {
     const { CreateUser } = container
     const { name, cpf, birthdate, subscription, dependents } = req.body
 
@@ -23,21 +23,21 @@ const UsersController = (container) => ({
     res.send(201, user)
   },
 
-  findUser: async (req, res, next) => {
+  findUser: async (req, res) => {
     const { GetUser } = container
 
     const user = await GetUser(req.params.id)
     res.send(user)
   },
 
-  deleteUser: async (req, res, next) => {
+  deleteUser: async (req, res) => {
     const { DeleteUser } = container
 
     await DeleteUser(req.params.id)
     res.send(204, {})
   },
 
-  updateUser: async (req, res, next) => {
+  updateUser: async (req, res) => {
     const { UpdateUser } = container
 
     const permitted = [
