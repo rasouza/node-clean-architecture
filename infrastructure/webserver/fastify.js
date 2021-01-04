@@ -6,8 +6,8 @@ module.exports = ({ routes, LoggerConfig }) => {
     logger: LoggerConfig
   })
 
-  each(route => {
-    server.route(route)
+  each(path => {
+    server.route(path)
   })(routes)
 
   server.listen(3000, (err, address) => {
