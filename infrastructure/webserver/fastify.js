@@ -10,12 +10,5 @@ module.exports = ({ routes, LoggerConfig }) => {
     server.route(path)
   })(routes)
 
-  server.listen(3000, (err, address) => {
-    if (err) {
-      server.log.error(err)
-      process.exit(1)
-    }
-  })
-
   return server
 }
