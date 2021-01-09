@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "NODE_ENV=development nodemon",
     "start": "node index.js",
-    "test": "nyc --reporter=html --report-dir=coverage mocha --recursive --exit"
+    "test": "NODE_ENV=test nyc --reporter=html --report-dir=coverage mocha --require test/hooks.js --recursive --parallel --exit",
+    "test:watch": "NODE_ENV=test nyc --reporter=html --report-dir=coverage mocha --require test/hooks.js --recursive --parallel --watch"
   },
   "repository": {
     "type": "git",
@@ -29,15 +30,16 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "eslint": "^7.12.1",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^5.0.0",
     "mocha": "^8.0.1",
     "nodemon": "^2.0.4",
     "nyc": "^15.1.0",
-    "pino-pretty": "^4.3.0",
-    "standard": "^14.3.4"
-  },
-  "standard": {
-    "ignore": [
-      "mongo-init.js"
-    ]
+    "pino-pretty": "^4.3.0"
   }
 }
