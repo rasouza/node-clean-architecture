@@ -1,5 +1,3 @@
-const restify = require('restify')
-
 module.exports = ({ UsersController }) => [
   {
     method: 'GET',
@@ -30,21 +28,22 @@ module.exports = ({ UsersController }) => [
     method: 'PUT',
     path: '/users/:id',
     handler: UsersController.updateUser
-  },
-  {
-    method: 'GET',
-    path: '/docs/*',
-    handler: restify.plugins.serveStatic({
-      directory: `${__dirname}../../../`,
-      default: 'index.html'
-    })
-  },
-  {
-    method: 'GET',
-    path: '/coverage/*',
-    handler: restify.plugins.serveStatic({
-      directory: `${__dirname}../../../`,
-      default: 'index.html'
-    })
   }
+  // FIXME: Fastify to serve static files
+  // {
+  //   method: 'GET',
+  //   path: '/docs/*',
+  //   handler: restify.plugins.serveStatic({
+  //     directory: `${__dirname}../../../`,
+  //     default: 'index.html'
+  //   })
+  // },
+  // {
+  //   method: 'GET',
+  //   path: '/coverage/*',
+  //   handler: restify.plugins.serveStatic({
+  //     directory: `${__dirname}../../../`,
+  //     default: 'index.html'
+  //   })
+  // }
 ]

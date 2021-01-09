@@ -6,7 +6,7 @@ const merge = require('lodash/fp/merge')
 /**
  * TODO: Remove restify-errors
  */
-const { NotFoundError, ForbiddenError } = require('restify-errors')
+const { NotFoundError, AlreadyExistsError } = require('../webserver/errors')
 
 module.exports = () => {
   return {
@@ -18,7 +18,7 @@ module.exports = () => {
 
     persist (user) {
       const duplicated = filter({ cpf: user.cpf }, this.db)
-      if (duplicated.length > 0) throw new ForbiddenError('This CPF already exists')
+      if (duplicated.length > 0) throw new AlreadyExistsError('This CPF already exists')
 
       user.id = `${++this.lastId}`
       this.db.push(user)

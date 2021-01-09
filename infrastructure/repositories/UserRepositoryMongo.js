@@ -1,7 +1,4 @@
-/**
- * TODO: Remove restify-errors
- */
-const { NotFoundError, ForbiddenError } = require('restify-errors')
+const { NotFoundError, AlreadyExistsError } = require('../webserver/errors')
 
 const MONGO_ALREADY_EXISTS = 11000
 
@@ -30,31 +27,23 @@ module.exports = ({ User, UserSchema }) => ({
       )
     } catch (err) {
       if (err.code === MONGO_ALREADY_EXISTS) {
-        throw new ForbiddenError('This CPF already exists')
+        throw new AlreadyExistsError('This CPF already exists')
       }
     }
   },
 
   get: async id => {
-    try {
-      const mongooseUser = await UserSchema.findById(id)
-      if (!mongooseUser) throw new NotFoundError('User not found')
+    const mongooseUser = await UserSchema.findById(id)
+    if (!mongooseUser) throw new NotFoundError('User not found')
 
-      return new User(
-        mongooseUser.id,
-        mongooseUser.name,
-        mongooseUser.cpf,
-        mongooseUser.birthdate,
-        mongooseUser.subscription,
-        mongooseUser.dependents
-      )
-    } catch (err) {
-      if (err.name === 'CastError') {
-        throw new NotFoundError('User not found')
-      } else {
-        throw err
-      }
-    }
+    return new User(
+      mongooseUser.id,
+      mongooseUser.name,
+      mongooseUser.cpf,
+      mongooseUser.birthdate,
+      mongooseUser.subscription,
+      mongooseUser.dependents
+    )
   },
 
   merge: async (id, data) => {
@@ -74,7 +63,7 @@ module.exports = ({ User, UserSchema }) => ({
       if (err.name === 'CastError') {
         throw new NotFoundError('User not found')
       } else if (err.code === MONGO_ALREADY_EXISTS) {
-        throw new ForbiddenError('This CPF already exists')
+        throw new AlreadyExistsError('This CPF already exists')
       } else {
         throw err
       }
