@@ -3,9 +3,6 @@ const first = require('lodash/fp/first')
 const remove = require('lodash/fp/remove')
 const merge = require('lodash/fp/merge')
 
-/**
- * TODO: Remove restify-errors
- */
 const { NotFoundError, AlreadyExistsError } = require('../webserver/errors')
 
 module.exports = () => {
