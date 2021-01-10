@@ -2,7 +2,7 @@ function NotFoundError (description) {
   Error.call(this)
   Error.captureStackTrace(this)
   this.name = 'NOT_FOUND'
-  this.httpCode = 404
+  this.statusCode = 404
   this.description = description
   this.isOperational = true
 }
@@ -13,7 +13,7 @@ function AlreadyExistsError (description) {
   Error.call(this)
   Error.captureStackTrace(this)
   this.name = 'ALREADY_EXISTS'
-  this.httpCode = 409
+  this.statusCode = 409
   this.description = description
   this.isOperational = true
 }

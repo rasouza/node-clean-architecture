@@ -1,23 +1,19 @@
-const { expect } = require('chai')
+const chai = require('chai')
+const chaiHttp = require('chai-http')
 
-process.env.NODE_ENV = 'test'
-
-/**
- * FIXME: supertest doesn't work with fastify
- */
+chai.use(chaiHttp)
+const expect = chai.expect
 
 describe('Users API', async () => {
-  const server = await require('../../index')
-  console.log(server)
-  const request = require('supertest')(server)
   describe('When there is no user in database', () => {
     it('GET /users returns empty list', async () => {
-      await request
+      await chai.request('http://localhost:3000')
         .get('/users')
-        .set('Accept', 'application/json')
-        .expect('Content-Type', /json/)
-        .expect([])
-        .expect(200)
+        .then(res => {
+          expect(res).to.be.json
+          expect(res).to.have.status(200)
+          expect(res.body).to.be.empty
+        })
     })
   })
 
@@ -26,35 +22,38 @@ describe('Users API', async () => {
       const user = {
         name: 'Rodrigo'
       }
-      await request
+
+      await chai.request('http://localhost:3000')
         .post('/users')
-        .set('Accept', 'application/json')
         .send(user)
-        .expect({ id: '1', name: 'Rodrigo' })
-        .expect(201)
+        .then(res => {
+          expect(res).to.have.status(201)
+          expect(res.body).to.eql({ id: '1', name: 'Rodrigo' })
+        })
     })
 
     it('GET /users returns a list with 1 user', async () => {
-      await request
+      await chai.request('http://localhost:3000')
         .get('/users')
-        .set('Accept', 'application/json')
-        .expect('Content-Type', /json/)
-        .expect(res => {
+        .then(res => {
+          expect(res)
+          expect(res).to.be.json
+          expect(res).to.have.status(200)
           expect(res.body).to.have.lengthOf(1)
         })
-        .expect(200)
     })
 
     describe('but a CPF already exists', () => {
-      it('POST /users returns 403', async () => {
+      it('POST /users returns 409 Conflict', async () => {
         const user = {
           name: 'Rodrigo'
         }
-        await request
+        await chai.request('http://localhost:3000')
           .post('/users')
-          .set('Accept', 'application/json')
           .send(user)
-          .expect(403)
+          .catch(err => {
+            expect(err).to.have.status(409)
+          })
       })
     })
   })
@@ -62,53 +61,63 @@ describe('Users API', async () => {
   describe('When there are users in database', () => {
     describe('GET /users/:id', () => {
       it('returns 404 when an user not exists', async () => {
-        await request
+        await chai.request('http://localhost:3000')
           .get('/users/0')
-          .set('Accept', 'application/json')
-          .expect(404)
+          .catch(err => {
+            expect(err).to.be.json
+            expect(err).to.have.status(404)
+          })
       })
       it('returns 200 when an user exists', async () => {
-        await request
+        await chai.request('http://localhost:3000')
           .get('/users/1')
-          .set('Accept', 'application/json')
-          .expect({ id: '1', name: 'Rodrigo' })
-          .expect(200)
+          .then(res => {
+            expect(res).to.be.json
+            expect(res).to.have.status(200)
+            expect(res.body).to.eql({ id: '1', name: 'Rodrigo' })
+          })
       })
     })
     describe('PATCH /users/:id', () => {
       it('returns 404 when an user not exists', async () => {
-        await request
+        await chai.request('http://localhost:3000')
           .patch('/users/0')
-          .set('Accept', 'application/json')
           .send({
             subscription: 'Basic'
           })
-          .expect(404)
+          .catch(err => {
+            expect(err).to.be.json
+            expect(err).to.have.status(404)
+          })
       })
-      it('returns 200 when an uupdate went successful', async () => {
-        await request
+      it('returns 200 when an update went successful', async () => {
+        await chai.request('http://localhost:3000')
           .patch('/users/1')
-          .set('Accept', 'application/json')
           .send({
             subscription: 'Basic',
             name: 'Laura'
           })
-          .expect({ id: '1', name: 'Laura', subscription: 'Basic' })
-          .expect(200)
+          .then(res => {
+            expect(res).to.be.json
+            expect(res).to.have.status(200)
+            expect(res.body).to.eql({ id: '1', name: 'Laura', subscription: 'Basic' })
+          })
       })
     })
     describe('DELETE /users/:id ', () => {
       it('return 404 when user not exists', async () => {
-        await request
+        await chai.request('http://localhost:3000')
           .delete('/users/0')
-          .set('Accept', 'application/json')
-          .expect(404)
+          .catch(err => {
+            expect(err).to.have.status(404)
+          })
       })
       it('return 204 when succesfully deleting user', async () => {
-        await request
+        await chai.request('http://localhost:3000')
           .delete('/users/1')
-          .set('Accept', 'application/json')
-          .expect(204)
+          .then(res => {
+            expect(res).to.have.status(200)
+          })
       })
     })
   })

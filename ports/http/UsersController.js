@@ -5,7 +5,7 @@ const UsersController = (container) => ({
     const { ListUsers } = container
 
     const users = await ListUsers()
-    res.send(users)
+    return users
   },
 
   createUser: async (req, res) => {
@@ -20,21 +20,21 @@ const UsersController = (container) => ({
       dependents
     )
 
-    res.send(201, user)
+    res.code(201).send(user)
   },
 
   findUser: async (req, res) => {
     const { GetUser } = container
 
     const user = await GetUser(req.params.id)
-    res.send(user)
+    return user
   },
 
   deleteUser: async (req, res) => {
     const { DeleteUser } = container
 
-    await DeleteUser(req.params.id)
-    res.send(204, {})
+    const user = await DeleteUser(req.params.id)
+    return user
   },
 
   updateUser: async (req, res) => {
@@ -49,7 +49,7 @@ const UsersController = (container) => ({
     ]
 
     const user = await UpdateUser(req.params.id, pick(permitted, req.body))
-    res.send(user)
+    return user
   }
 })
 
