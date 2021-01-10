@@ -4,9 +4,10 @@
   "description": "user management api for healthcare system",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon",
+    "dev": "NODE_ENV=development nodemon",
     "start": "node index.js",
-    "test": "nyc --reporter=html --report-dir=coverage mocha --recursive --exit"
+    "test": "NODE_ENV=test nyc --reporter=html --report-dir=coverage mocha --require test/hooks.js --recursive --parallel --exit",
+    "test:watch": "NODE_ENV=test nyc --reporter=html --report-dir=coverage mocha --require test/hooks.js --recursive --parallel --watch"
   },
   "repository": {
     "type": "git",
@@ -21,22 +22,25 @@
   "dependencies": {
     "awilix": "^4.2.6",
     "dotenv": "^8.2.0",
-    "electrolyte": "^0.5.1",
+    "fastify": "^3.9.2",
+    "fastify-static": "^3.3.1",
     "lodash-fp": "^0.10.4",
+    "make-promises-safe": "^5.1.0",
     "mongoose": "^5.9.18",
-    "restify": "^8.5.1"
+    "pino": "^6.9.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "eslint": "^7.12.1",
+    "eslint-config-standard": "^16.0.2",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-standard": "^5.0.0",
     "mocha": "^8.0.1",
     "nodemon": "^2.0.4",
     "nyc": "^15.1.0",
-    "standard": "^14.3.4",
-    "supertest": "^4.0.2"
-  },
-  "standard": {
-    "ignore": [
-      "mongo-init.js"
-    ]
+    "pino-pretty": "^4.3.0"
   }
 }

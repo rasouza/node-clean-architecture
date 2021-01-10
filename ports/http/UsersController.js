@@ -1,75 +1,55 @@
 const pick = require('lodash/fp/pick')
 
 const UsersController = (container) => ({
-  listUsers: async (req, res, next) => {
+  listUsers: async (req, res) => {
     const { ListUsers } = container
 
-    try {
-      const users = await ListUsers()
-      res.send(users)
-    } catch (err) {
-      next(err)
-    }
+    const users = await ListUsers()
+    return users
   },
 
-  createUser: async (req, res, next) => {
+  createUser: async (req, res) => {
     const { CreateUser } = container
     const { name, cpf, birthdate, subscription, dependents } = req.body
 
-    try {
-      const user = await CreateUser(
-        name,
-        cpf,
-        birthdate,
-        subscription,
-        dependents
-      )
+    const user = await CreateUser(
+      name,
+      cpf,
+      birthdate,
+      subscription,
+      dependents
+    )
 
-      res.send(201, user)
-    } catch (err) {
-      next(err)
-    }
+    res.code(201).send(user)
   },
 
-  findUser: async (req, res, next) => {
+  findUser: async (req, res) => {
     const { GetUser } = container
 
-    try {
-      const user = await GetUser(req.params.id)
-      res.send(user)
-    } catch (err) {
-      next(err)
-    }
+    const user = await GetUser(req.params.id)
+    return user
   },
 
-  deleteUser: async (req, res, next) => {
+  deleteUser: async (req, res) => {
     const { DeleteUser } = container
 
-    try {
-      await DeleteUser(req.params.id)
-      res.send(204, {})
-    } catch (err) {
-      next(err)
-    }
+    const user = await DeleteUser(req.params.id)
+    return user
   },
 
-  updateUser: async (req, res, next) => {
+  updateUser: async (req, res) => {
     const { UpdateUser } = container
 
-    try {
-      const permitted = [
-        'name',
-        'cpf',
-        'birthdate',
-        'subscription',
-        'dependents'
-      ]
+    const permitted = [
+      'name',
+      'cpf',
+      'birthdate',
+      'subscription',
+      'dependents'
+    ]
 
-      const user = await UpdateUser(req.params.id, pick(permitted, req.body))
-      res.send(user)
-    } catch (err) {
-      next(err)
-    }
+    const user = await UpdateUser(req.params.id, pick(permitted, req.body))
+    return user
   }
 })
 
