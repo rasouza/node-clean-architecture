@@ -29,21 +29,4 @@ module.exports = ({ UsersController }) => [
     path: '/users/:id',
     handler: UsersController.updateUser
   }
-  // FIXME: Fastify to serve static files
-  // {
-  //   method: 'GET',
-  //   path: '/docs/*',
-  //   handler: restify.plugins.serveStatic({
-  //     directory: `${__dirname}../../../`,
-  //     default: 'index.html'
-  //   })
-  // },
-  // {
-  //   method: 'GET',
-  //   path: '/coverage/*',
-  //   handler: restify.plugins.serveStatic({
-  //     directory: `${__dirname}../../../`,
-  //     default: 'index.html'
-  //   })
-  // }
 ]
