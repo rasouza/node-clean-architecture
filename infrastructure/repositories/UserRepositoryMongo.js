@@ -1,8 +1,10 @@
+const { RESOLVER } = require('awilix')
+
 const { NotFoundError, AlreadyExistsError } = require('../webserver/errors')
 
 const MONGO_ALREADY_EXISTS = 11000
 
-module.exports = ({ User, UserSchema }) => ({
+const UserRepository = ({ User, UserSchema }) => ({
   find: async () => await UserSchema.find(),
 
   persist: async user => {
@@ -29,6 +31,7 @@ module.exports = ({ User, UserSchema }) => ({
       if (err.code === MONGO_ALREADY_EXISTS) {
         throw new AlreadyExistsError('This CPF already exists')
       }
+      throw err
     }
   },
 
@@ -79,3 +82,9 @@ module.exports = ({ User, UserSchema }) => ({
     return mongooseUser
   }
 })
+
+module.exports = UserRepository
+UserRepository[RESOLVER] = {
+  name: 'UserRepository'
+  // register: asFunction
+}

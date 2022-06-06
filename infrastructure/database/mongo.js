@@ -1,7 +1,6 @@
-const { RESOLVER, Lifetime } = require('awilix')
 const mongoose = require('mongoose')
 
-const database = () => {
+const connect = () => {
   const { DB_HOST, DB_PORT, DB_DATABASE, DB_USER, DB_PASS } = process.env
   const connectionString = `mongodb://${DB_HOST}:${DB_PORT}/${DB_DATABASE}`
 
@@ -22,8 +21,4 @@ const database = () => {
   return mongoose
 }
 
-module.exports = database
-database[RESOLVER] = {
-  name: 'database',
-  lifetime: Lifetime.SINGLETON
-}
+module.exports = connect
