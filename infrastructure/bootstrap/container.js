@@ -1,6 +1,4 @@
 const { createContainer } = require('awilix')
-const resolveLogger = require('./logger')
-const resolveDB = require('./database')
 
 const container = createContainer()
 
@@ -10,9 +8,6 @@ module.exports = () => {
     'application/**/*.js',
     'domain/**/*.js'
   ])
-
-  resolveDB(container)
-  resolveLogger(container)
 
   return container
 }

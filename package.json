@@ -1,24 +1,25 @@
 {
   "name": "backend",
-  "version": "1.0.0",
+  "version": "1.2.0",
+  "private": true,
   "description": "user management api for healthcare system",
   "main": "index.js",
   "scripts": {
     "dev": "NODE_ENV=development nodemon",
     "start": "node index.js",
-    "test": "NODE_ENV=test nyc --reporter=html --report-dir=coverage mocha --require test/hooks.js --recursive --parallel --exit",
-    "test:watch": "NODE_ENV=test nyc --reporter=html --report-dir=coverage mocha --require test/hooks.js --recursive --parallel --watch"
+    "test": "cross-env NODE_ENV=test jest",
+    "test:watch": "NODE_ENV=test nyc --reporter=html --report-dir=coverage mocha --require test/setup.js --recursive --parallel --watch"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rasouza/sami-test.git"
+    "url": "git+https://github.com/rasouza/node-clean-architecture.git"
   },
   "author": "R. A. Souza",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/rasouza/sami-test/issues"
+    "url": "https://github.com/rasouza/node-clean-architecture/issues"
   },
-  "homepage": "https://github.com/rasouza/sami-test#readme",
+  "homepage": "https://github.com/rasouza/node-clean-architecture#readme",
   "dependencies": {
     "awilix": "^4.2.6",
     "dotenv": "^8.2.0",
@@ -30,17 +31,29 @@
     "pino": "^6.9.0"
   },
   "devDependencies": {
-    "chai": "^4.2.0",
-    "chai-http": "^4.3.0",
+    "@semantic-release/git": "^10.0.1",
+    "@types/jest": "^28.1.1",
+    "cross-env": "^7.0.3",
     "eslint": "^7.12.1",
     "eslint-config-standard": "^16.0.2",
     "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jest": "^26.5.3",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^4.2.1",
     "eslint-plugin-standard": "^5.0.0",
-    "mocha": "^8.0.1",
+    "jest": "^28.1.0",
     "nodemon": "^2.0.4",
     "nyc": "^15.1.0",
-    "pino-pretty": "^4.3.0"
+    "pino-pretty": "^4.3.0",
+    "semantic-release": "^19.0.2"
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/github",
+      "@semantic-release/npm",
+      "@semantic-release/git"
+    ]
   }
 }

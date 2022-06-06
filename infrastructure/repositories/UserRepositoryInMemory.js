@@ -1,3 +1,5 @@
+const { RESOLVER, Lifetime } = require('awilix')
+
 const filter = require('lodash/fp/filter')
 const first = require('lodash/fp/first')
 const remove = require('lodash/fp/remove')
@@ -5,7 +7,7 @@ const merge = require('lodash/fp/merge')
 
 const { NotFoundError, AlreadyExistsError } = require('../webserver/errors')
 
-module.exports = () => {
+const UserRepository = () => {
   return {
     lastId: 0,
     db: [],
@@ -43,4 +45,11 @@ module.exports = () => {
       return user
     }
   }
+}
+
+module.exports = UserRepository
+UserRepository[RESOLVER] = {
+  name: 'UserRepository',
+  lifetime: Lifetime.SINGLETON
+  // register: asFunction
 }

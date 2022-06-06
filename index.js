@@ -1,12 +1,15 @@
 require('dotenv').config()
 require('make-promises-safe')
 
-const container = require('./infrastructure/config/container')()
-const server = require('./infrastructure/webserver/fastify')(container.cradle)
+const startHttp = require('./infrastructure/webserver/fastify')
+const bootstrap = require('./infrastructure/bootstrap')
 
-server.listen(3000, (err, address) => {
+const container = bootstrap()
+const app = startHttp(container)
+
+app.listen(3000, (err, address) => {
   if (err) {
-    server.log.error(err)
+    app.log.error(err)
     process.exit(1)
   }
 })
