@@ -3,7 +3,7 @@
   "info": {
     "description": "CRUD for users",
     "version": "1.0.0",
-    "title": "Sami Backend",
+    "title": "Node Clean Architecture API",
     "contact": {
       "email": "alves.wm@gmail.com"
     },
@@ -14,16 +14,14 @@
   },
   "servers": [
     {
-      "url": "http://localhost:8080",
+      "url": "http://localhost:3000",
       "description": "localhost"
     }
   ],
   "paths": {
     "/users/{id}": {
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Retrieve a single user by ID",
         "parameters": [
           {
@@ -50,9 +48,7 @@
         }
       },
       "patch": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Update user profile",
         "parameters": [
           {
@@ -97,9 +93,7 @@
         }
       },
       "delete": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Delete user",
         "parameters": [
           {
@@ -121,9 +115,7 @@
     },
     "/users": {
       "get": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "List all users",
         "responses": {
           "200": {
@@ -142,9 +134,7 @@
         }
       },
       "post": {
-        "tags": [
-          "Users"
-        ],
+        "tags": ["Users"],
         "summary": "Create a new user",
         "requestBody": {
           "required": true,
@@ -206,11 +196,7 @@
           },
           "subscription": {
             "type": "string",
-            "enum": [
-              "Basic",
-              "Standard",
-              "Premium"
-            ]
+            "enum": ["Basic", "Standard", "Premium"]
           },
           "dependents": {
             "type": "number"
