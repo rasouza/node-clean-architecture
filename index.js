@@ -5,4 +5,11 @@ const startHttp = require('./infrastructure/webserver/fastify')
 const bootstrap = require('./infrastructure/bootstrap')
 
 const container = bootstrap()
-startHttp(container)
+const app = startHttp(container)
+
+app.listen(3000, (err, address) => {
+  if (err) {
+    app.log.error(err)
+    process.exit(1)
+  }
+})

@@ -22,12 +22,5 @@ module.exports = ({ routes, LoggerConfig }) => {
   server.get('/docs/', (req, res) => { res.sendFile('docs/') })
   server.get('/coverage/', (req, res) => { res.sendFile('coverage/') })
 
-  server.listen(3000, (err, address) => {
-    if (err) {
-      server.log.error(err)
-      process.exit(1)
-    }
-  })
-
   return server
 }
