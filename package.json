@@ -1,6 +1,7 @@
 {
   "name": "backend",
-  "version": "1.0.0",
+  "version": "1.2.0",
+  "private": true,
   "description": "user management api for healthcare system",
   "main": "index.js",
   "scripts": {
@@ -30,6 +31,7 @@
     "pino": "^6.9.0"
   },
   "devDependencies": {
+    "@semantic-release/git": "^10.0.1",
     "@types/jest": "^28.1.1",
     "cross-env": "^7.0.3",
     "eslint": "^7.12.1",
@@ -42,6 +44,16 @@
     "jest": "^28.1.0",
     "nodemon": "^2.0.4",
     "nyc": "^15.1.0",
-    "pino-pretty": "^4.3.0"
+    "pino-pretty": "^4.3.0",
+    "semantic-release": "^19.0.2"
+  },
+  "release": {
+    "plugins": [
+      "@semantic-release/commit-analyzer",
+      "@semantic-release/release-notes-generator",
+      "@semantic-release/github",
+      "@semantic-release/npm",
+      "@semantic-release/git"
+    ]
   }
 }
